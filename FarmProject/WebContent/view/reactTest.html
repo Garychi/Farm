@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Hello React!</title>
+
+<!--   <script src="../reactJS/build/react.js"></script>
+    <script src="../reactJS/build/react-dom.js"></script> -->
+<link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7-dist/css/bootstrap.css" />
+<script src="https://unpkg.com/react@15.3.1/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.js"></script>
+<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+<script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<br>
+	<script type="text/babel">  
+	var LoginDiv = React.createClass({
+			render : function(){
+				return (
+						<div className="loginDiv">
+							<UserName/>
+							<Password/>
+							<Submit/>
+						</div>
+					);
+				}
+			});
+			
+		var UserName = React.createClass({
+		render : function (){
+				return (
+					<div>
+					<label className="userNameLbl">UserName</label>
+					<input className="usernameIn" type="text" ></input>
+					</div>
+				);
+			}
+		});
+
+		var Password = React.createClass({
+		render : function(){
+				return (
+				<div>
+				<label className="passwdLbl">Password</label>
+				<input type="password" className="passwd"></input>
+				</div>
+				);
+			}
+		});
+
+		var Submit = React.createClass({
+		render : function(){
+				return  (
+				<div>
+				<button type="submit">click me</button>
+				</div>
+			);
+			}
+		});
+
+
+	ReactDOM.render(<LoginDiv/>,document.getElementById('content'));
+	</script>
+</body>
+</html>
