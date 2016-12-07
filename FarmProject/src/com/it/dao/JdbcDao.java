@@ -131,7 +131,13 @@ public class JdbcDao implements JdbcDaoInterface {
 	}
 
 	public Collection<?> query(String paramString) {
-
+		String sql ="select * from T_A_ORG";
+		List<Map<String,Object>> result= (List<Map<String, Object>>) jdbcTemplate.queryForList(sql);
+		
+		if(result !=null){
+			return result;
+		}
+		
 		return null;
 	}
 

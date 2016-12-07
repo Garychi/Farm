@@ -6,7 +6,8 @@
                 <param-name>contextConfigLocation</param-name>
                 <param-value>
                         WEB-INF/config/cxf-beans.xml,
-                       WEB-INF/config/spring-init-config.xml
+                       WEB-INF/config/spring-init-config.xml,
+                       WEB-INF/config/mybatis-spring-config.xml
                 </param-value>
         </context-param>
         <listener>
