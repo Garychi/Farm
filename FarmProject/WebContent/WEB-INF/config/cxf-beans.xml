@@ -11,12 +11,14 @@
         ">
         <import resource="classpath:META-INF/cxf/cxf.xml" />
         <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-        <!-- JAX-WS -->
+        <!--JAX_RS -->
         <bean id="fintechServiceClass" class="com.webservice.service.FintechService" />
         <bean id="stockServiceClass" class="com.webservice.service.StockService" />
+        <bean id="employeeServiceClass" class="com.webservice.service.EmployeeService" />
         <!--cross domain config -->
+       
         <bean id="cors-filter" class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter" />
-        <!--JAX_RS -->
+       
         <jaxrs:server id="fintechService" address="/restfulService">
                 <jaxrs:features>
                         <cxf:logging />
@@ -24,6 +26,7 @@
                 <jaxrs:serviceBeans>
                         <ref bean="fintechServiceClass" />
                         <ref bean="stockServiceClass" />
+                        <ref bean="employeeServiceClass" />
                 </jaxrs:serviceBeans>
         <jaxrs:providers>
                 <ref bean="cors-filter" />

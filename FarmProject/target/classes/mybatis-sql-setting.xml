@@ -2,9 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="test.callDetails">
-	<select id="getCallDetails" parameterType="java.util.ArrayList" resultType="com.model.TAOrg">
+	<select id="getCallDetails" parameterType="java.util.ArrayList" resultType="com.model.EMP">
+	<!--where org_code =#{list[0]}  -->
 		<![CDATA[
-			select * from T_A_ORG where org_code =#{list[0]}
+			select * from EMP 
 		]]>
 	</select>
 </mapper>

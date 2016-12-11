@@ -40,7 +40,7 @@ public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 		return 0;
 	}
 
-	public Collection<?> query(String paramString) {
+	public List<Map<String, Object>> query(String paramString) {
 
 		return null;
 	}

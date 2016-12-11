@@ -130,10 +130,8 @@ public class JdbcDao implements JdbcDaoInterface {
 		return i;
 	}
 
-	public Collection<?> query(String paramString) {
-		String sql ="select * from T_A_ORG";
-		List<Map<String,Object>> result= (List<Map<String, Object>>) jdbcTemplate.queryForList(sql);
-		
+	public List<Map<String,Object>> query(String sql) {
+		List<Map<String,Object>> result=jdbcTemplate.queryForList(sql);
 		if(result !=null){
 			return result;
 		}
@@ -178,7 +176,8 @@ public class JdbcDao implements JdbcDaoInterface {
 
 	public int insert(Object paramObject) {
 		int i = 0;
-		try {
+		try {			
+			
 			// SqlCollector localSqlCollector = SQLStringUtils.getInsertSqlByBean(paramObject);
 			SqlCollector localSqlCollector =new SqlCollector();
 			i = this.jdbcTemplate.update(localSqlCollector.getSql() , localSqlCollector.getParam().toArray());

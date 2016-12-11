@@ -2,13 +2,14 @@ package com.it.idao;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public abstract interface DaoInterface {
 	public abstract int update(String paramString);
 
 	public abstract int update(String paramString, List<Object> paramList);
 
-	public abstract Collection<?> query(String paramString);
+	public abstract List<Map<String,Object>> query(String paramString);
 
 	public abstract Collection query(String paramString, int paramInt1, int paramInt2);
 
