@@ -34,7 +34,6 @@ public class OrgService extends DefaultResponse implements IOrgService {
 //				for(Object key :jsonObject.entrySet()){
 //					Object value =jsonObject.get(key);
 //				}
-		
 				String s="aaa";
 				jdbcDao.query(jsonObject);
 				//jdbcDao.insert(jsonObject);

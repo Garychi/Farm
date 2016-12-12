@@ -46,7 +46,7 @@ public class SQLMapper {
 		StringBuffer valuesBuffer = new StringBuffer();
 		List<Object> param = new ArrayList<Object>();
 		JSONObject jsonObject = (JSONObject) resource;
-
+		
 		columnBuffer.append("SELECT ");
 		valuesBuffer.append(" WHERE ");
 		for (Object key : jsonObject.entrySet()) {
