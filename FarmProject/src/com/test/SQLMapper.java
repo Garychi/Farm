@@ -2,6 +2,7 @@ package com.test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -45,24 +46,35 @@ public class SQLMapper {
 		StringBuffer columnBuffer = new StringBuffer();
 		StringBuffer valuesBuffer = new StringBuffer();
 		List<Object> param = new ArrayList<Object>();
-		JSONObject jsonObject = (JSONObject) resource;
+//		JSONObject jsonObject = (JSONObject) resource;
 		
+		this.setBeanMap(descriptionMapper(resource));
+		this.getBeanMap();
 		columnBuffer.append("SELECT ");
-		valuesBuffer.append(" WHERE ");
-		for (Object key : jsonObject.entrySet()) {
-			Map map =(Map) key;
-			Object value = jsonObject.get(key);
-			columnBuffer.append(key + ",");
-			valuesBuffer.append(" "+key + "= ? and");
-			param.add(value);
+		valuesBuffer.append(" WHERE 1=1 ");
+		String s ="aaa";
+		if (MapUtils.isNotEmpty(this.getBeanMap())) {
+			Map<String, Object> map = this.getBeanMap();
+			map.remove("class");
+			for (Entry<String, Object> entry : map.entrySet()) {
+				String key = toBaselineColumn(entry.getKey());
+				Object value = entry.getValue();
+				if (value != null && StringUtils.isNotEmpty(value.toString())) {					
+					columnBuffer.append(key + ",");
+//					valuesBuffer.append(" "+key + "= ? and");
+					valuesBuffer.append(" and "+key+"=? ");
+					param.add(value);				
+				}
+			}
 		}
-
+		
 		columnBuffer.append(" FROM ");
 		columnBuffer.append(tableBaseLine(resource));
-		String s="aaa";
-		String columnSql = columnBuffer.substring(0, columnBuffer.length() - 1) + " FROM ";
-		String whereSql =valuesBuffer.substring(0,valuesBuffer.lastIndexOf("and"));
-		this.setSql(columnSql+whereSql);
+		columnBuffer=columnBuffer.replace(columnBuffer.lastIndexOf(","), columnBuffer.lastIndexOf(",")+1, "");
+		
+//		String columnSql = columnBuffer.toString();
+//		String whereSql =valuesBuffer.toString());
+		this.setSql(columnBuffer.toString()+valuesBuffer.toString());
 		this.setParam(param);
 	}
 
@@ -108,7 +120,8 @@ public class SQLMapper {
 		Class clazz=resource.getClass();
 		String className=clazz.getName().replace(clazz.getPackage().getName() + ".", "");		
 		//_T_A_Org-->T_A_ORG
-		return toBaselineColumn(className).substring(1).toUpperCase();
+		String tableName=toBaselineColumn(className);
+		return tableName.startsWith("_") ==true ? toBaselineColumn(className).substring(1).toUpperCase() :tableName;
 	}
 	
 	/**

@@ -11,8 +11,8 @@ public class ClassDescription {
 		ClassDescription description = new ClassDescription();
 
 		EMP employee = new EMP();
-		employee.setDepno(1);
-		employee.setEmpno(10.0);
+		employee.setDeptno(1);
+		employee.setEmpno(10);
 		employee.setJob("Manager");
 
 		description.testString();

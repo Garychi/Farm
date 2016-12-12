@@ -10,7 +10,7 @@ import com.it.dao.JdbcDao;
 import com.it.mybatis.MybatisDao;
 import com.it.utils.GsonUtil;
 import com.model.EMP;
-import com.model.TAOrg;
+//import com.model.TAOrg;
 import com.webservice.DefaultResponse;
 import com.webservice.header.IOrgService;
 
@@ -31,10 +31,6 @@ public class OrgService extends DefaultResponse implements IOrgService {
 		if (!StringUtils.isEmpty(json)) {
 			try {
 				JSONObject jsonObject =JSONObject.fromObject(json);
-//				for(Object key :jsonObject.entrySet()){
-//					Object value =jsonObject.get(key);
-//				}
-				String s="aaa";
 				jdbcDao.query(jsonObject);
 				//jdbcDao.insert(jsonObject);
 			} catch (Exception e) {
@@ -55,8 +51,8 @@ public class OrgService extends DefaultResponse implements IOrgService {
 	public Object insert(String json) throws Exception {
 		if (!StringUtils.isEmpty(json)) {
 			try {
-				Object jsonObject = GsonUtil.fromJson(json, TAOrg.class);
-				jdbcDao.insert(jsonObject);
+//				Object jsonObject = GsonUtil.fromJson(json, TAOrg.class);
+//				jdbcDao.insert(jsonObject);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return responseFailed();

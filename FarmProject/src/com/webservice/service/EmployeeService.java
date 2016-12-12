@@ -26,18 +26,18 @@ public class EmployeeService extends DefaultResponse implements IEmployeeService
 	@Override
 	public Object search(String json) throws Exception {
 		// TODO Auto-generated method stub
+		Object result=null;
 		String sql = "select * from EMP";
 		if (!StringUtils.isEmpty(json)) {
 			try {
 				Object jsonObject = GsonUtil.fromJson(json, EMP.class);
-				jdbcDao.insert(jsonObject);
+				result=jdbcDao.query(jsonObject);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return responseFailed();
 			}
 		}
-		List<Map<String, Object>> result = jdbcDao.query(sql);
-
+		
 		return responseSuccess(toJsonObject(result));
 	}
 

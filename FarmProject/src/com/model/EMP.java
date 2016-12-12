@@ -12,19 +12,19 @@ public class EMP implements Serializable{
 	private static final long serialVersionUID = -4208174096098106059L;
 	
 	@Id
-	private Double empno;
+	private Integer empno;
 	private String ename;
 	private String job;
-	private int mgr;
+	private Integer mgr;
 	private Date hiredate;
 	private Double sal;
 	private Double comm;
-	private int depno;
+	private Integer deptno;
 	
-	public Double getEmpno() {
+	public Integer getEmpno() {
 		return empno;
 	}
-	public void setEmpno(Double empno) {
+	public void setEmpno(Integer empno) {
 		this.empno = empno;
 	}
 	public String getEname() {
@@ -39,10 +39,10 @@ public class EMP implements Serializable{
 	public void setJob(String job) {
 		this.job = job;
 	}
-	public int getMgr() {
+	public Integer getMgr() {
 		return mgr;
 	}
-	public void setMgr(int mgr) {
+	public void setMgr(Integer mgr) {
 		this.mgr = mgr;
 	}
 	public Date getHiredate() {
@@ -63,13 +63,12 @@ public class EMP implements Serializable{
 	public void setComm(Double comm) {
 		this.comm = comm;
 	}
-	public int getDepno() {
-		return depno;
+	public Integer getDeptno() {
+		return deptno;
 	}
-	public void setDepno(int depno) {
-		this.depno = depno;
+	public void setDeptno(Integer deptno) {
+		this.deptno = deptno;
 	}
-
 	
 	
 }
