@@ -14,6 +14,9 @@ import org.springframework.stereotype.Repository;
 import com.it.exception.SysException;
 import com.it.idao.JdbcDaoInterface;
 import com.it.utils.SqlCollector;
+import com.test.SQLMapper;
+
+import net.sf.json.JSONObject;
 
 @Repository("jdbcDao")
 public class JdbcDao implements JdbcDaoInterface {
@@ -36,8 +39,11 @@ public class JdbcDao implements JdbcDaoInterface {
 	}
 
 	public List<?> query(Object paramObject) {
+		SQLMapper mapper = new SQLMapper();
+		mapper.generateSelectSqlByBean(paramObject);
+		List<Map<String, Object>> result = jdbcTemplate.queryForList(mapper.getSql(), mapper.getParam());
 
-		return null;
+		return result;
 	}
 
 	public List<?> query(Object paramObject, int paramInt1, int paramInt2) {
@@ -60,7 +66,8 @@ public class JdbcDao implements JdbcDaoInterface {
 		return null;
 	}
 
-	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList, Map<String, String> paramMap) {
+	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList,
+			Map<String, String> paramMap) {
 
 		return null;
 	}
@@ -70,17 +77,20 @@ public class JdbcDao implements JdbcDaoInterface {
 		return null;
 	}
 
-	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList, int paramInt, Map<String, String> paramMap) {
+	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList, int paramInt,
+			Map<String, String> paramMap) {
 
 		return null;
 	}
 
-	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList, int paramInt1, int paramInt2) {
+	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList, int paramInt1,
+			int paramInt2) {
 
 		return null;
 	}
 
-	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList, int paramInt1, int paramInt2, Map<String, String> paramMap) {
+	public List<?> query(Class<?> paramClass, String paramString, List<Object> paramList, int paramInt1, int paramInt2,
+			Map<String, String> paramMap) {
 
 		return null;
 	}
@@ -100,24 +110,25 @@ public class JdbcDao implements JdbcDaoInterface {
 		return null;
 	}
 
-	public List<List<?>> query(Class<?>[] paramArrayOfClass, String paramString, List<Object> paramList, int paramInt1, int paramInt2) {
+	public List<List<?>> query(Class<?>[] paramArrayOfClass, String paramString, List<Object> paramList, int paramInt1,
+			int paramInt2) {
 
 		return null;
 	}
 
 	public int update(String paramString) {
 		ArrayList localArrayList = new ArrayList();
-		return update(paramString , localArrayList);
+		return update(paramString, localArrayList);
 	}
 
 	public int update(String paramString, List<Object> paramList) {
 		int i = 0;
 		try {
-			// paramString = this.manageService.addManageColumn(paramString, paramList);
+			// paramString = this.manageService.addManageColumn(paramString,
+			// paramList);
 			Object[] arrayOfObject = paramList.toArray();
-			i = this.jdbcTemplate.update(paramString , arrayOfObject);
-		}
-		catch (IllegalArgumentException localIllegalArgumentException) {
+			i = this.jdbcTemplate.update(paramString, arrayOfObject);
+		} catch (IllegalArgumentException localIllegalArgumentException) {
 			log.error(localIllegalArgumentException.getMessage());
 			localIllegalArgumentException.printStackTrace();
 			throw new SysException(localIllegalArgumentException);
@@ -130,12 +141,12 @@ public class JdbcDao implements JdbcDaoInterface {
 		return i;
 	}
 
-	public List<Map<String,Object>> query(String sql) {
-		List<Map<String,Object>> result=jdbcTemplate.queryForList(sql);
-		if(result !=null){
+	public List<Map<String, Object>> query(String sql) {
+		List<Map<String, Object>> result = jdbcTemplate.queryForList(sql);
+		if (result != null) {
 			return result;
 		}
-		
+
 		return null;
 	}
 
@@ -176,13 +187,11 @@ public class JdbcDao implements JdbcDaoInterface {
 
 	public int insert(Object paramObject) {
 		int i = 0;
-		try {			
-			
-			// SqlCollector localSqlCollector = SQLStringUtils.getInsertSqlByBean(paramObject);
-			SqlCollector localSqlCollector =new SqlCollector();
-			i = this.jdbcTemplate.update(localSqlCollector.getSql() , localSqlCollector.getParam().toArray());
-		}
-		catch (IllegalArgumentException localIllegalArgumentException) {
+		try {
+			SQLMapper mapper = new SQLMapper(paramObject);
+			mapper.generateInsertSqlByBean();
+			i = this.jdbcTemplate.update(mapper.getSql(), mapper.getParam().toArray());
+		} catch (IllegalArgumentException localIllegalArgumentException) {
 			localIllegalArgumentException.printStackTrace();
 			log.error(localIllegalArgumentException.getMessage());
 			throw new SysException(localIllegalArgumentException);
