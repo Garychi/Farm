@@ -15,6 +15,7 @@
         <bean id="fintechServiceClass" class="com.webservice.service.FintechService" />
         <bean id="stockServiceClass" class="com.webservice.service.StockService" />
         <bean id="employeeServiceClass" class="com.webservice.service.EmployeeService" />
+        <bean id="orgServiceClass" class="com.webservice.service.OrgService" />
         <!--cross domain config -->
        
         <bean id="cors-filter" class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter" />
@@ -27,6 +28,7 @@
                         <ref bean="fintechServiceClass" />
                         <ref bean="stockServiceClass" />
                         <ref bean="employeeServiceClass" />
+                        <ref bean="orgServiceClass" />
                 </jaxrs:serviceBeans>
         <jaxrs:providers>
                 <ref bean="cors-filter" />

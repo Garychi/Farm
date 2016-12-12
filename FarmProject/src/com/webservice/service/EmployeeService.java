@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import com.google.gson.Gson;
 import com.it.dao.JdbcDao;
 import com.it.mybatis.MybatisDao;
 import com.it.utils.GsonUtil;
@@ -45,9 +44,9 @@ public class EmployeeService extends DefaultResponse implements IEmployeeService
 						
 				String s ="aa";
 			}
-			catch(Exception e){
-			
+			catch(Exception e){			
 				e.printStackTrace();
+				return responseFailed();
 			}
 			
 		}
