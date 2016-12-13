@@ -2,7 +2,6 @@ package com.test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -10,8 +9,6 @@ import java.util.Map.Entry;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
-
-import net.sf.json.JSONObject;
 
 public class SQLMapper {
 
@@ -46,22 +43,20 @@ public class SQLMapper {
 		StringBuffer columnBuffer = new StringBuffer();
 		StringBuffer valuesBuffer = new StringBuffer();
 		List<Object> param = new ArrayList<Object>();
-//		JSONObject jsonObject = (JSONObject) resource;
 		
-		this.setBeanMap(descriptionMapper(resource));
-		this.getBeanMap();
+		Map<String, Object> map =descriptionMapper(resource);
+		this.setBeanMap(map);
+		
 		columnBuffer.append("SELECT ");
 		valuesBuffer.append(" WHERE 1=1 ");
-		String s ="aaa";
-		if (MapUtils.isNotEmpty(this.getBeanMap())) {
-			Map<String, Object> map = this.getBeanMap();
+
+		if (MapUtils.isNotEmpty(map)) {
 			map.remove("class");
 			for (Entry<String, Object> entry : map.entrySet()) {
 				String key = toBaselineColumn(entry.getKey());
 				Object value = entry.getValue();
 				if (value != null && StringUtils.isNotEmpty(value.toString())) {					
 					columnBuffer.append(key + ",");
-//					valuesBuffer.append(" "+key + "= ? and");
 					valuesBuffer.append(" and "+key+"=? ");
 					param.add(value);				
 				}
@@ -70,10 +65,9 @@ public class SQLMapper {
 		
 		columnBuffer.append(" FROM ");
 		columnBuffer.append(tableBaseLine(resource));
-		columnBuffer=columnBuffer.replace(columnBuffer.lastIndexOf(","), columnBuffer.lastIndexOf(",")+1, "");
+		int index =columnBuffer.lastIndexOf(",");
+		columnBuffer=columnBuffer.replace(index, index+1, "");
 		
-//		String columnSql = columnBuffer.toString();
-//		String whereSql =valuesBuffer.toString());
 		this.setSql(columnBuffer.toString()+valuesBuffer.toString());
 		this.setParam(param);
 	}
@@ -85,13 +79,14 @@ public class SQLMapper {
 		StringBuffer columnBuffer = new StringBuffer();
 		StringBuffer valuesBuffer = new StringBuffer();
 		List<Object> param = new ArrayList<Object>();
+		
 		columnBuffer.append("INSERT INTO ");
-		columnBuffer.append(this.getClassName() + " (");
+		columnBuffer.append(toBaselineColumn(this.getClassName()) + " (");
 
 		valuesBuffer.append(" VALUES( ");
-
-		if (MapUtils.isNotEmpty(this.getBeanMap())) {
-			Map<String, Object> map = this.getBeanMap();
+		
+		Map<String, Object> map =this.getBeanMap();
+		if (MapUtils.isNotEmpty(map)) {
 			map.remove("class");
 			for (Entry<String, Object> entry : map.entrySet()) {
 				String key = toBaselineColumn(entry.getKey());
@@ -120,8 +115,9 @@ public class SQLMapper {
 		Class clazz=resource.getClass();
 		String className=clazz.getName().replace(clazz.getPackage().getName() + ".", "");		
 		//_T_A_Org-->T_A_ORG
+		//EMP-->EMP
 		String tableName=toBaselineColumn(className);
-		return tableName.startsWith("_") ==true ? toBaselineColumn(className).substring(1).toUpperCase() :tableName;
+		return tableName.startsWith("_") ==true ? tableName.substring(1).toUpperCase() :tableName;
 	}
 	
 	/**
@@ -130,7 +126,7 @@ public class SQLMapper {
 	 * @return
 	 */
 	public String toBaselineColumn(String column) {
-		if (StringUtils.isAllLowerCase(column) || StringUtils.isAllUpperCase(column)) {
+		if (StringUtils.isAllLowerCase(column) || StringUtils.isAllUpperCase(column) || "tenantGroup".equals(column) ||"createDate".equals(column)) {
 			return column;
 		} 
 
@@ -146,7 +142,8 @@ public class SQLMapper {
 				}
 			}
 		}
-		return buffer.toString();
+		String columnName=buffer.toString();
+		return columnName.startsWith("_")==true ? columnName.substring(1) : columnName;
 	}
 
 	public Map getBeanMap() {
