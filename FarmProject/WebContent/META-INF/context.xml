@@ -20,6 +20,6 @@
                
 <Resource name="jdbc/initDB" auth="Container"  type="javax.sql.DataSource"  
                maxActive="20" maxIdle="2" maxWait="600"   
-                username="B2B_DEV" password="b2bdev"  driverClassName="oracle.jdbc.driver.OracleDriver"  
-               url="jdbc:oracle:thin:@10.40.41.217:1521:orcl" />
+                username="username" password="passwd"  driverClassName="oracle.jdbc.driver.OracleDriver"  
+               url="jdbc:oracle:thin:@localhost:xe" />
 </Context>

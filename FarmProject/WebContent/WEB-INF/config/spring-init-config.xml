@@ -23,8 +23,8 @@ xmlns:jaxws="http://cxf.apache.org/jaxws"
         <bean id="dataSource" 
         class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" 
         p:driverClassName="oracle.jdbc.driver.OracleDriver" 
-        p:url="jdbc:oracle:thin:@10.40.41.217:1521:orcl" 
-        p:username="B2B_DEV" p:password="b2bdev" />
+        p:url="jdbc:oracle:thin:@localhost:xe" 
+        p:username="username" p:password="passwd" />
                 
         <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
                 <property name="dataSource" ref="dataSource" />
