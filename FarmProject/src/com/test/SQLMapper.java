@@ -1,10 +1,14 @@
 package com.test;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TimeZone;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.MapUtils;
@@ -84,17 +88,29 @@ public class SQLMapper {
 		columnBuffer.append(toBaselineColumn(this.getClassName()) + " (");
 
 		valuesBuffer.append(" VALUES( ");
-		
+		String dateformat="yyyy-MM-dd hh24:mi:ss";
 		Map<String, Object> map =this.getBeanMap();
 		if (MapUtils.isNotEmpty(map)) {
 			map.remove("class");
 			for (Entry<String, Object> entry : map.entrySet()) {
 				String key = toBaselineColumn(entry.getKey());
 				Object value = entry.getValue();
-				if (value != null && StringUtils.isNotEmpty(value.toString())) {
+				if (value != null && StringUtils.isNotEmpty(value.toString())) {		
 					columnBuffer.append(key + ",");
-					valuesBuffer.append("?,");
-					param.add(value);
+					if(key.toUpperCase().contains("DATE")){
+						valuesBuffer.append(" TO_DATE(TO_CHAR(?,?),?),");
+						Date date = new Date(value.toString());
+						Object o = new java.sql.Date(date.getTime());
+						param.add(o);
+						param.add(dateformat);
+						param.add(dateformat);
+					}
+					else{
+//						columnBuffer.append(key + ",");
+						valuesBuffer.append("?,");
+						param.add(value);
+					}
+				
 				}
 			}
 
