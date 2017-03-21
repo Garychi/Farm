@@ -36,7 +36,7 @@ public class FintechService extends DefaultResponse implements IFintechService {
 		
 		// 生成Response
 		Response response = builder.build();
-
+	
 		// 回傳Response
 		return response;		
 	}

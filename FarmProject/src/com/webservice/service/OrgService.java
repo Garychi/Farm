@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.transaction.Transactional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
@@ -20,20 +22,23 @@ public class OrgService extends DefaultResponse implements IOrgService {
 
 	@Autowired
 	JdbcDao jdbcDao;
-
+	
+	private static final Logger logger = LogManager.getLogger(OrgService.class);
+	
 	// @Autowired
 	// MybatisDao mybatisDao;
 
 	@Override
 	public Object search(String json) throws Exception {
 		// String sql = "select * from T_A_ORG ";
+		logger.info("in search");
 		Object result = null;
 		if (!StringUtils.isEmpty(json)) {
 			try {
 				// JSONObject jsonObject =JSONObject.fromObject(json);
 				Object jsonObject = GsonUtil.fromJson(json, TAOrg.class);
 				result = jdbcDao.query(jsonObject);
-
+				logger.info("search success");
 			} catch (Exception e) {
 				e.printStackTrace();
 				return responseFailed();
