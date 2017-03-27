@@ -45,8 +45,7 @@ public class FintechService extends DefaultResponse implements IFintechService {
 
 	@Override
 	public Object getDataJson(String json) throws Exception {
-		// TODO Auto-generated method stub
-		String s = "Aaa";
+	
 		return null;
 	}
 
