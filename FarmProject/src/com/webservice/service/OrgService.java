@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 
 import com.it.dao.JdbcDao;
 import com.it.utils.GsonUtil;
-import com.model.TAOrg;
+//import com.model.TAOrg;
 //import com.model.TAOrg;
 import com.webservice.DefaultResponse;
 import com.webservice.header.IOrgService;
@@ -36,8 +36,8 @@ public class OrgService extends DefaultResponse implements IOrgService {
 		if (!StringUtils.isEmpty(json)) {
 			try {
 				// JSONObject jsonObject =JSONObject.fromObject(json);
-				Object jsonObject = GsonUtil.fromJson(json, TAOrg.class);
-				result = jdbcDao.query(jsonObject);
+//				Object jsonObject = GsonUtil.fromJson(json, TAOrg.class);
+//				result = jdbcDao.query(jsonObject);
 				logger.info("search success");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -55,17 +55,17 @@ public class OrgService extends DefaultResponse implements IOrgService {
 	public Object insert(String json) throws Exception {
 		if (!StringUtils.isEmpty(json)) {
 			try {
-				TAOrg tAOrg = (TAOrg) GsonUtil.fromJson(json, TAOrg.class);
-				tAOrg.setOrgCode("G1234");		
-				tAOrg.setCompany("company");
-				tAOrg.setCreator("user001");
-				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-				
-				Timestamp ts=new Timestamp(new Date().getTime());
-				tAOrg.setCreateDate(ts);
-				tAOrg.setDataSource("1");
-				tAOrg.setTenantGroup("28682266");
-				jdbcDao.insert(tAOrg);
+//				TAOrg tAOrg = (TAOrg) GsonUtil.fromJson(json, TAOrg.class);
+//				tAOrg.setOrgCode("G1234");		
+//				tAOrg.setCompany("company");
+//				tAOrg.setCreator("user001");
+//				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//				
+//				Timestamp ts=new Timestamp(new Date().getTime());
+//				tAOrg.setCreateDate(ts);
+//				tAOrg.setDataSource("1");
+//				tAOrg.setTenantGroup("28682266");
+//				jdbcDao.insert(tAOrg);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return responseFailed();
