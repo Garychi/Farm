@@ -1,19 +1,13 @@
 package com.webservice.service;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import com.it.dao.JdbcDao;
-import com.it.mybatis.MybatisDao;
 import com.it.utils.GsonUtil;
 import com.model.EMP;
 import com.webservice.DefaultResponse;
 import com.webservice.header.IEmployeeService;
-
-import net.sf.json.JSONObject;
 
 public class EmployeeService extends DefaultResponse implements IEmployeeService {
 
