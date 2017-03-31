@@ -8,6 +8,6 @@ public class SpringFundsWsClient {
 	        ApplicationContext context = new ClassPathXmlApplicationContext("com/test/client-config.xml");
 	        IFund service = (IFund) context.getBean("fundClient");
 	        Double price = service.getPrice("1235");
-	        System.out.println("[1235] ²b­È¬° " + price);
+	        System.out.println("[1235]" + price);
 	    }
 }

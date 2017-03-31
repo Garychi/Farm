@@ -11,26 +11,26 @@ public class CompanyDAO {
 	private static Map<String, Collection<Fund>> fundMap = new HashMap<String, Collection<Fund>>();
 
 	static {
-		Company company1 = new Company();
-		company1.setCompId("A001");
-		company1.setCompName("魔根");
-		companyMap.put(company1.getCompId() , company1);
-
-		Fund fund1 = new Fund();
-		fund1.setFundId("AF001");
-		fund1.setFundName("新興市場債券基金");
-		fund1.setPrice(35.53);
-
-		Fund fund2 = new Fund();
-		fund2.setFundId("AF002");
-		fund2.setFundName("希臘高收益債券基金");
-		fund2.setPrice(0.33);
-
-		Collection<Fund> fundsList = new ArrayList<Fund>();
-		fundsList.add(fund1);
-		fundsList.add(fund2);
-
-		fundMap.put(company1.getCompId() , fundsList);
+//		Company company1 = new Company();
+//		company1.setCompId("A001");
+//		company1.setCompName("魔根");
+//		companyMap.put(company1.getCompId() , company1);
+//
+//		Fund fund1 = new Fund();
+//		fund1.setFundId("AF001");
+//		fund1.setFundName("新興市場債券基金");
+//		fund1.setPrice(35.53);
+//
+//		Fund fund2 = new Fund();
+//		fund2.setFundId("AF002");
+//		fund2.setFundName("希臘高收益債券基金");
+//		fund2.setPrice(0.33);
+//
+//		Collection<Fund> fundsList = new ArrayList<Fund>();
+//		fundsList.add(fund1);
+//		fundsList.add(fund2);
+//
+//		fundMap.put(company1.getCompId() , fundsList);
 	}
 
 	public void addCompany(Company company) {
