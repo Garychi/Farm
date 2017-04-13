@@ -13,12 +13,15 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.it.exception.SysException;
 import com.it.generic.MyCriteria;
 import com.it.idao.DaoInterface;
 import com.it.idao.HibernateDaoInterface;
 
+@Repository("hibernateDao")
 public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 
 	private static Logger log = LogManager.getLogger(HibernateDAO.class);
@@ -138,26 +141,16 @@ public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 
 		return null;
 	}
-
+	
 	public Query createQuery(String paramString) {
 		Query localQuery = null;
 		try {
-			ArrayList localArrayList = new ArrayList();
-			// if (this.manageService != null) {
-			// paramString = this.manageService.addManageColumnByHql(paramString, localArrayList);
-			// }
 			localQuery = getCurrentSession().createQuery(paramString);
-			// localQuery = this.multitenancyUtil.setHibernateQueryInfo(localQuery, localArrayList);
 		}
 		catch (IllegalArgumentException localIllegalArgumentException) {
 			localIllegalArgumentException.printStackTrace();
 			log.error(localIllegalArgumentException.getMessage());
 		}
-		// catch (IllegalAccessException localIllegalAccessException)
-		// {
-		// localIllegalAccessException.printStackTrace();
-		// log.error(localIllegalAccessException.getMessage());
-		// }
 		return localQuery;
 	}
 
