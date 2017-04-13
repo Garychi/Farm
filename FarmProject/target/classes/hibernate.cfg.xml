@@ -3,12 +3,16 @@
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-        <session-factory>
-                <property name="hibernate.show_sql">true</property>
-                <property name="hibernate.format_sql">true</property>
-                <property name="hibernate.max_fetch_depth">3</property>
-                <!-- 以下設置物件與資料庫表格映射文件 -->
-                <!-- <mapping class="com.model.TAProd" /> -->
-                
-        </session-factory>
+	<session-factory>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.max_fetch_depth">3</property>
+<!-- managed -->
+<!-- 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="hibernate.current_session_context_class">thread</property> -->
+		<!-- 以下設置物件與資料庫表格映射文件 -->
+		<!-- <mapping class="com.model.TAProd" /> -->
+		<mapping class="com.model.Product" />
+		<mapping class="com.model.ProductPK" />
+	</session-factory>
 </hibernate-configuration>
