@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:cxf="http://cxf.apache.org/core" xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://cxf.apache.org/jaxws
         http://cxf.apache.org/schemas/jaxws.xsd
@@ -9,30 +12,33 @@
         http://cxf.apache.org/core
         http://cxf.apache.org/schemas/core.xsd  
         ">
-        <import resource="classpath:META-INF/cxf/cxf.xml" />
-        <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-        <!--JAX_RS -->
-        <bean id="fintechServiceClass" class="com.webservice.service.FintechService" />
-        <bean id="stockServiceClass" class="com.webservice.service.StockService" />
-        <bean id="employeeServiceClass" class="com.webservice.service.EmployeeService" />
-        <bean id="orgServiceClass" class="com.webservice.service.OrgService" />
-        <!--cross domain config -->
-       
-        <bean id="cors-filter" class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter" />
-       
-        <jaxrs:server id="fintechService" address="/restfulService">
-                <jaxrs:features>
-                        <cxf:logging />
-                </jaxrs:features>
-                <jaxrs:serviceBeans>
-                        <ref bean="fintechServiceClass" />
-                        <ref bean="stockServiceClass" />
-                        <ref bean="employeeServiceClass" />
-                        <ref bean="orgServiceClass" />
-                </jaxrs:serviceBeans>
-        <jaxrs:providers>
-                <ref bean="cors-filter" />
-        </jaxrs:providers>
-        </jaxrs:server>
-        
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<!--JAX_RS -->
+	<bean id="fintechServiceClass" class="com.webservice.service.FintechService" />
+	<bean id="stockServiceClass" class="com.webservice.service.StockService" />
+	<bean id="employeeServiceClass" class="com.webservice.service.EmployeeService" />
+	<bean id="orgServiceClass" class="com.webservice.service.OrgService" />
+	<bean id="productServiceClass" class="com.webservice.service.ProductService" />
+	<!--cross domain config -->
+
+	<bean id="cors-filter"
+		class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter" />
+
+	<jaxrs:server id="fintechService" address="/restfulService">
+		<jaxrs:features>
+			<cxf:logging />
+		</jaxrs:features>
+		<jaxrs:serviceBeans>
+			<ref bean="fintechServiceClass" />
+			<ref bean="stockServiceClass" />
+			<ref bean="employeeServiceClass" />
+			<ref bean="orgServiceClass" />
+			<ref bean="productServiceClass" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="cors-filter" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
 </beans>
