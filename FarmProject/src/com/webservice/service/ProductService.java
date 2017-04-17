@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import com.it.dao.HibernateDAO;
+import com.it.dao.JdbcDao;
 import com.webservice.DefaultResponse;
 import com.webservice.MockLogger;
 import com.webservice.header.IProduct;
@@ -19,15 +20,19 @@ public class ProductService extends DefaultResponse implements IProduct{
 	Logger log  = LogManager.getLogger(ProductService.class);
 	
 	@Autowired
+	JdbcDao jdbcDao;
+	
+	@Autowired
 	HibernateDAO hibernateDao;
 	
 	@Transactional
 	@Override
 	public Object search(String json) throws Exception {
 		Object result = null;
-		MockLogger myLog= new MockLogger();
+//		MockLogger myLog= new MockLogger();
+		System.out.println("in search-----");
 		log.info("--------into search----------");
-		myLog.LoggerTest();
+//		myLog.LoggerTest();
 		
 		if (!StringUtils.isEmpty(json)) {
 			try {

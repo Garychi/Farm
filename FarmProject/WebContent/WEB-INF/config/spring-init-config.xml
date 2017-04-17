@@ -25,6 +25,10 @@
 		destroy-method="close" p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@localhost:1521:xe" p:username="Home_Practice"
 		p:password="homeCertificated" />
+<!-- 			<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@localhost:1521:xe" p:username="Home_Practice"
+		p:password="homeCertificated" /> -->
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
