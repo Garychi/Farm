@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import com.it.dao.HibernateDAO;
+import com.it.dao.JdbcDao;
 import com.webservice.DefaultResponse;
 import com.webservice.header.IProduct;
 
@@ -17,8 +18,8 @@ public class ProductService extends DefaultResponse implements IProduct{
 	
 	private static final Logger log  = LogManager.getLogger(ProductService.class);
 	
-//	@Autowired
-//	JdbcDao jdbcDao;
+	@Autowired
+	JdbcDao jdbcDao;
 	
 	@Autowired
 	HibernateDAO hibernateDao;
@@ -28,7 +29,6 @@ public class ProductService extends DefaultResponse implements IProduct{
 	public Object search(String json) throws Exception {
 		Object result = null;
 //		MockLogger myLog= new MockLogger();
-		System.out.println("in search-----");
 		log.info("--------into search----------");
 //		myLog.LoggerTest();
 		
@@ -36,7 +36,7 @@ public class ProductService extends DefaultResponse implements IProduct{
 			try {
 				String paramString = "select model from Product model ";
 				result =hibernateDao.createQuery(paramString).list();
-				
+				log.info("--------end search----------");
 			} catch (Exception e) {
 				e.printStackTrace();
 				return responseFailed();

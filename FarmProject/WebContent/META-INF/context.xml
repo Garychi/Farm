@@ -12,9 +12,14 @@
 <!-- The contents of this file will be loaded for each web application -->
 <Context>
 
-	<Resource name="jdbc/initDB" auth="Container" type="javax.sql.DataSource"
+<!-- 	<Resource name="jdbc/initDB" auth="Container" type="javax.sql.DataSource"
 		maxActive="20" maxIdle="2" maxWait="600" username="Home_Practice"
 		password="homeCertificated" driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@localhost:1521:xe" />
+		p:url="jdbc:oracle:thin:@localhost:1521:xe" /> -->
+		
+			<Resource name="jdbc/initDB" auth="Container" type="javax.sql.DataSource"
+		maxTotal="20" maxIdle="2" maxWaitMillis="600" username="Home_Practice"
+		password="homeCertificated" driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe" />
 
 </Context>
