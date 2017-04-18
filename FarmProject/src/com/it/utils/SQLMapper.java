@@ -1,4 +1,4 @@
-package com.test;
+package com.it.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;

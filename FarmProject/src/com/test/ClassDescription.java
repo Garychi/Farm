@@ -1,5 +1,6 @@
 package com.test;
 
+import com.it.utils.SQLMapper;
 import com.model.EMP;
 
 public class ClassDescription {

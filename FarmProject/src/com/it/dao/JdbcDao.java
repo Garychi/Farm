@@ -13,10 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.it.exception.SysException;
 import com.it.idao.JdbcDaoInterface;
-import com.it.utils.SqlCollector;
-import com.test.SQLMapper;
-
-import net.sf.json.JSONObject;
+import com.it.utils.SQLMapper;
 
 @Repository("jdbcDao")
 public class JdbcDao implements JdbcDaoInterface {
