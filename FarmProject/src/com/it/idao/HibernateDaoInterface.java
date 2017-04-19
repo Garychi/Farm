@@ -23,9 +23,9 @@ public abstract interface HibernateDaoInterface {
 	  
 	  public abstract int updateByHQL(String paramString, Map<String, Object> paramMap);
 	  
-	  public abstract Criteria createCriteria(MyCriteria paramDwCriteria);
+	  public abstract Criteria createCriteria(MyCriteria paramCriteria);
 	  
-//	  public abstract Criteria createCriteria(MyCriteria paramDwCriteria, DwPagingVO paramDwPagingVO);
+	  public abstract Query createQuery(Object object);
 	  
-	  public abstract int getRowCount(MyCriteria paramDwCriteria);
+	  public abstract int getRowCount(MyCriteria paramCriteria);
 }

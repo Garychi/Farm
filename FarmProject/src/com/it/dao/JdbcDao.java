@@ -38,8 +38,8 @@ public class JdbcDao implements JdbcDaoInterface {
 	public List<?> query(Object paramObject) {
 		SQLMapper mapper = new SQLMapper();
 		mapper.generateSelectSqlByBean(paramObject);
-		log.info(mapper.getSql());
-		log.info(mapper.getParam());
+//		log.info(mapper.getSql());
+//		log.info(mapper.getParam());
 		List<Map<String, Object>> result = jdbcTemplate.queryForList(mapper.getSql(), mapper.getParam().toArray());
 
 		return result;

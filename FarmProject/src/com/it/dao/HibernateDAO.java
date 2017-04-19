@@ -1,6 +1,5 @@
 package com.it.dao;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +13,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.it.exception.SysException;
 import com.it.generic.MyCriteria;
@@ -90,9 +88,8 @@ public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 			try {
 				getCurrentSession().save(paramObject);
 				count++;
-			}
-			catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+//				log.error(e.getMessage());
 				throw new SysException(e.getMessage());
 			}
 		}
@@ -109,9 +106,8 @@ public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 				getCurrentSession().save(localObject);
 				i++;
 			}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			log.info(e.getMessage());
 			throw new SysException(e.getMessage());
 		}
 		return i;
@@ -123,31 +119,58 @@ public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 	}
 
 	public int updateByBeanCollection(Collection<?> paramCollection) {
-
-		return 0;
+		int i = 0;
+		try {
+			Iterator localIterator = paramCollection.iterator();
+			while (localIterator.hasNext()) {
+				Object localObject = localIterator.next();
+				getCurrentSession().update(localObject);
+				i++;
+			}
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw new SysException(e.getMessage());
+		}
+		return i;
 	}
 
 	public int delete(Object paramObject) {
-
+		try{
+			getCurrentSession().delete(paramObject);
+		}
+		catch(Exception e){
+			log.info(e.getMessage());
+			throw new SysException(e.getMessage());
+		}
 		return 0;
 	}
 
 	public int deleteByBeanCollection(Collection paramCollection) {
-
-		return 0;
+		int i = 0;
+		try {
+			Iterator localIterator = paramCollection.iterator();
+			while (localIterator.hasNext()) {
+				Object localObject = localIterator.next();
+				getCurrentSession().delete(localObject);
+				i++;
+			}
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw new SysException(e.getMessage());
+		}
+		return i;
 	}
 
 	public Object refreshObject(Object paramObject) {
 
 		return null;
 	}
-	
+
 	public Query createQuery(String paramString) {
 		Query localQuery = null;
 		try {
 			localQuery = getCurrentSession().createQuery(paramString);
-		}
-		catch (IllegalArgumentException localIllegalArgumentException) {
+		} catch (IllegalArgumentException localIllegalArgumentException) {
 			localIllegalArgumentException.printStackTrace();
 			log.error(localIllegalArgumentException.getMessage());
 		}
@@ -184,14 +207,29 @@ public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 		return 0;
 	}
 
-	public Criteria createCriteria(MyCriteria paramDwCriteria) {
+	public Criteria createCriteria(MyCriteria paramCriteria) {
 
 		return null;
 	}
 
-	public int getRowCount(MyCriteria paramDwCriteria) {
+	public int getRowCount(MyCriteria paramCriteria) {
 
 		return 0;
+	}
+
+	public Query createQuery(Object paramObject) {
+		// select model from Product model where 1=1 and model.id.prodCode =?
+		// and model.id.compCode=?
+		StringBuffer hql = new StringBuffer();
+		Query localQuery = null;
+		try {
+			localQuery = getCurrentSession().createQuery(hql.toString());
+		} catch (IllegalArgumentException localIllegalArgumentException) {
+			localIllegalArgumentException.printStackTrace();
+			log.error(localIllegalArgumentException.getMessage());
+		}
+
+		return localQuery;
 	}
 
 }

@@ -11,8 +11,11 @@
 <!-- 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		<property name="hibernate.current_session_context_class">thread</property> -->
 		<!-- 以下設置物件與資料庫表格映射文件 -->
-		<!-- <mapping class="com.model.TAProd" /> -->
+		
 		<mapping class="com.model.Product" />
 		<mapping class="com.model.ProductPK" />
+		<mapping class="com.model.Userinfo" />
+		<mapping class="com.model.UserinfoPK" />
+		
 	</session-factory>
 </hibernate-configuration>
