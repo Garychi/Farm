@@ -178,13 +178,24 @@ public class HibernateDAO implements HibernateDaoInterface, DaoInterface {
 	}
 
 	public Query createQuery(String paramString, List<Object> paramList) {
-
+		
 		return null;
 	}
 
 	public Query createQuery(String paramString, Map<String, Object> paramMap) {
-
-		return null;
+		Query localQuery = null;
+		try {
+			localQuery = getCurrentSession().createQuery(paramString);
+			
+			for(String param :localQuery.getNamedParameters()){
+				localQuery.setParameter(param, paramMap.get(param));
+			}
+			
+		} catch (IllegalArgumentException localIllegalArgumentException) {
+			localIllegalArgumentException.printStackTrace();
+			log.error(localIllegalArgumentException.getMessage());
+		}
+		return localQuery;
 	}
 
 	public Criteria createCriteria(Class<?> paramClass) {

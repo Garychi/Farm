@@ -30,7 +30,8 @@ public class Userinfo implements Serializable {
 
 	private Date modidate;
 
-	private String userName;
+	@Column(name="USER_ID")
+	private String userId;
 
 	public Userinfo() {
 		this.id=new UserinfoPK();
@@ -92,12 +93,12 @@ public class Userinfo implements Serializable {
 		this.modidate = modidate;
 	}
 
-	public String getUserName() {
-		return this.userName;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 }

@@ -23,14 +23,15 @@
 				<SizeBasedTriggeringPolicy size="50 MB" />
 			</Policies>
 		</RollingRandomAccessFile>
-		<JDBC name="dbAppender" tableName="Logs">
+		<JDBC name="dbAppender" tableName="LOGS">
 			<DataSource jndiName="java:comp/env/jdbc/initDB" />
-			<Column name="USER_ID" pattern="%X{UserID}" />
+			<!-- <Column name="USER_ID" pattern="%X{UserID}" /> -->
+			<Column name="USER_ID" pattern="%X{User_ID}" />
 			<Column name="DATED" isEventTimestamp="true" />
 			<Column name="LEVEL_NAME" pattern="%level" />
 			<Column name="LOGGER" pattern="%logger" />
 			<Column name="MESSAGE" pattern="%message" />
-			<Column name="EXCEPTION_NO" pattern="%X{ExceptionNo}" />
+			<Column name="EXCEPTION_NO" pattern="%X{Exception_No}" />
 		</JDBC>
 		<Async name="ASYNC">
 			<AppenderRef ref="Console" level="INFO" />

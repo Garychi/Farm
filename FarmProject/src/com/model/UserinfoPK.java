@@ -9,49 +9,63 @@ import javax.persistence.*;
  */
 @Embeddable
 public class UserinfoPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	// default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="USER_ID", unique=true, nullable=false, length=40)
-	private String userId;
+	@Column(name = "USER_NAME")
+	private String userName;
 
-	@Column(unique=true, nullable=false, length=100)
 	private String password;
 
 	public UserinfoPK() {
 	}
-	public String getUserId() {
-		return this.userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
 	public String getPassword() {
 		return this.password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof UserinfoPK)) {
-			return false;
-		}
-		UserinfoPK castOther = (UserinfoPK)other;
-		return 
-			this.userId.equals(castOther.userId)
-			&& this.password.equals(castOther.password);
+	public String getUserName() {
+		return userName;
 	}
 
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int hash = 17;
-		hash = hash * prime + this.userId.hashCode();
-		hash = hash * prime + this.password.hashCode();
-		
-		return hash;
+		int result = 1;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserinfoPK other = (UserinfoPK) obj;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		return true;
+	}
+
+
 }
