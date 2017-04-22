@@ -53,3 +53,6 @@ FarmProject/WebContent/WEB-INF/config/spring-init-config.xml
 FarmProject/target/*
 
 
+FarmProject/target/classes/com/it/dao/HibernateDAO.class
+FarmProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+FarmProject/target/m2e-wtp/web-resources/META-INF/maven/FarmProject/FarmProject/pom.xml
