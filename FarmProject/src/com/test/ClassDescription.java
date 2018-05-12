@@ -1,25 +1,34 @@
 package com.test;
 
+
+import org.apache.log4j.Logger;
+
 import com.it.utils.SQLMapper;
 import com.model.EMP;
 
-public class ClassDescription {
 
+public class ClassDescription {
+	private final static Logger log = Logger.getLogger(ClassDescription.class);
 	public ClassDescription() {
 	}
 
 	public static void main(String args[]) {
 		ClassDescription description = new ClassDescription();
+		log.info("aa");
+//		EMP employee = new EMP();
+//		employee.setDeptno(1);
+//		employee.setEmpno(10);
+//		employee.setJob("Manager");
 
-		EMP employee = new EMP();
-		employee.setDeptno(1);
-		employee.setEmpno(10);
-		employee.setJob("Manager");
-
-		description.testString();
+//		description.testString();
 		//description.DescriptionMapper(employee);
 	}
+	
+	public static void test(){
 		
+		
+	}
+	
 	public void testString(){
 		String str="key =? and key=? and";	
 		str.lastIndexOf("and");
@@ -28,7 +37,7 @@ public class ClassDescription {
 	}
 	/**
 	 * for select
-	 * @param obj
+	 * @param resource
 	 */
 	public void DescriptionMapper(Object resource) {
 		SQLMapper mapper = new SQLMapper(resource);

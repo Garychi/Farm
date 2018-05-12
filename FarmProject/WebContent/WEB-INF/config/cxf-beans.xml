@@ -21,6 +21,7 @@
 	<bean id="orgServiceClass" class="com.webservice.service.OrgService" />
 	<bean id="productServiceClass" class="com.webservice.service.ProductService" />
 	<bean id="loginServiceClass" class="com.webservice.service.LoginService" />
+	<bean id="menuServiceClass" class="com.webservice.service.MenuService" />
 	<!--cross domain config -->
 
 	<!--<bean id="cors-filter"
@@ -40,6 +41,7 @@
 			<ref bean="orgServiceClass" />
 			<ref bean="productServiceClass" />
 			<ref bean="loginServiceClass" />
+			<ref bean="menuServiceClass" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<!--<ref bean="cors-filter" />-->
@@ -47,4 +49,5 @@
 		</jaxrs:providers>
 	</jaxrs:server>
 
+	
 </beans>

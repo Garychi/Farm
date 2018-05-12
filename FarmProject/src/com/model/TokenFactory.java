@@ -2,7 +2,10 @@ package com.model;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.UUID;
+
+import javax.crypto.spec.SecretKeySpec;
+
+import org.json.JSONObject;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,35 +13,37 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 
 public class TokenFactory {
 	
-	public String generateToken(String params){
-		Key key = MacProvider.generateKey();
+	TokenBean tokenBean = new TokenBean();
+	private static final Key key = MacProvider.generateKey();
+	private static final SignatureAlgorithm signatureAlgorithm =SignatureAlgorithm.HS512;
+	private static final byte[] apiKeySecretBytes = key.getEncoded(); 
+	private static final Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+	public static void main(String args[]){
+		TokenFactory factory = new TokenFactory();
+		factory.generateToken("id", "Issuer", "subject", 360000);
+	}
 	
+	public String refreshToken(String id,String issuer,String subject,long plusTime){
+		return generateToken(id, issuer, subject, plusTime);
+	}
+	
+	public String generateToken(String id,String issuer,String subject,long plusTime){			
 		String token = Jwts.builder()
-				.setId(UUID.randomUUID().toString())
-				.setSubject(params)
-				.setIssuer(params)
-				.setAudience(params)
-				.setExpiration(new Date(System.currentTimeMillis() + 3600000))
+				.setId(id)
+				.setSubject(subject)
+				.setIssuer(issuer)
+				.setAudience(id)
+				.setExpiration(new Date(System.currentTimeMillis() +plusTime))
 				.setIssuedAt(new Date())
 				.setNotBefore(new Date())
-				.signWith(SignatureAlgorithm.HS512, key)
-				.compact();	
-//		System.out.println(token);
+				.signWith(signatureAlgorithm, signingKey)
+				.compact();
 		
-//		try {
-//
-//		    Jws<Claims> parser = Jwts.parser().setSigningKey(key).parseClaimsJws(allType);
-//		    System.out.println("--------------------");
-//		    System.out.println(parser.getHeader());
-//		    System.out.println(parser.getBody());
-//		    System.out.println(parser.getSignature());
-//
-//		    //OK, we can trust this JWT
-//
-//		} catch (SignatureException e) {
-//			e.printStackTrace();
-//		    //don't trust the JWT!
-//		}
+		this.tokenBean.setToken(token);
+		
+		TokenUtil.parseJwt(signingKey, token);
+		
 		return token;
 	}
 }

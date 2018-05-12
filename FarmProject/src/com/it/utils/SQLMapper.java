@@ -119,7 +119,7 @@ public class SQLMapper {
 	}
 
 	/**
-	 * EX:TAOrg -->T_A_ORG
+	 * EX:TAOrg to T_A_ORG
 	 * table Name 
 	 * @param resource
 	 * @return
@@ -134,7 +134,7 @@ public class SQLMapper {
 	}
 	
 	/**
-	 * ex:hireDate -->hire_date
+	 * ex:hireDate to hire_date
 	 * @param column
 	 * @return
 	 */

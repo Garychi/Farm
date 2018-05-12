@@ -25,19 +25,23 @@
 		destroy-method="close" p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@localhost:1521:xe" p:username="Home_Practice"
 		p:password="homeCertificated" />
-<!-- 			<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close" p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@localhost:1521:xe" p:username="Home_Practice"
-		p:password="homeCertificated" /> -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close" p:driverClassName="oracle.jdbc.driver.OracleDriver" 
+		p:url="jdbc:oracle:thin:@localhost:1521:xe" p:username="Home_Practice" p:password="homeCertificated" 
+		/> -->
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
-		<!-- <property name="hibernateProperties"> <props> <prop key="hibernate.show_sql">true</prop> 
-			<prop key="hibernate.format_sql">true</prop> <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop> 
-			<prop key="hibernate.current_session_context_class">thread</prop> </props> 
-			</property> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+			</props>
+		</property>
 	</bean>
 
 	<!-- 配置Jdbc -->
@@ -59,5 +63,5 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-
+	<bean id="SpringUtils" class="com.it.utils.SpringUtils"></bean>
 </beans>

@@ -16,6 +16,7 @@
 		<mapping class="com.model.ProductPK" />
 		<mapping class="com.model.Userinfo" />
 		<mapping class="com.model.UserinfoPK" />
+		<mapping class="com.model.Menu" />
 		
 	</session-factory>
 </hibernate-configuration>

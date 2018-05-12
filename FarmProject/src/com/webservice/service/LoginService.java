@@ -41,8 +41,8 @@ public class LoginService extends DefaultResponse implements ILoginService {
 				result = hibernateDao.createQuery(hql.toString(), paramMap).list();
 				if(result !=null){
 					TokenFactory tokenFactory = new TokenFactory();
-					String token = tokenFactory.generateToken(json);
-					
+					String token = "";
+//					String token = tokenFactory.generateToken(json);
 //					loginStatus="Login Success";
 					
 					StatusType status=result !=null ? Status.OK : Status.NO_CONTENT;
@@ -50,10 +50,8 @@ public class LoginService extends DefaultResponse implements ILoginService {
 					ResponseBuilder builder = Response.status(status).entity(toJsonObject(token));
 					builder.header("Content-Type", "application/json;charset=UTF-8");
 //					builder.header("Authorization ", token);
-					// 生成Response
-					Response response = builder.build();
 
-					// 回傳Response
+					Response response = builder.build();
 					return response;	
 				}
 

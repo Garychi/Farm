@@ -12,8 +12,7 @@ import org.apache.commons.collections.MapUtils;
 public class ClassReflectionUtil {
 
 	/**
-	 * 把map轉成物件
-	 * 
+	 * change Map to Object
 	 * @param map
 	 * @return
 	 */

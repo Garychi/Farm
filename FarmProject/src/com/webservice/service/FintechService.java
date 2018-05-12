@@ -30,14 +30,10 @@ public class FintechService extends DefaultResponse implements IFintechService {
 		
 		Object result =defaultResponse();
 		
-		// 設定HTTP Status以及Response Body
 		ResponseBuilder builder = Response.status(Status.OK).entity(result);
 		builder.header("Content-Type", "application/json;charset=UTF-8");
 		
-		// 生成Response
 		Response response = builder.build();
-	
-		// 回傳Response
 		return response;		
 	}
 
@@ -52,7 +48,7 @@ public class FintechService extends DefaultResponse implements IFintechService {
 	@Override
 	public Object getDataOption(Map<String, Object> map, String json) throws Exception {
 		JSONObject jObject = new JSONObject();
-		jObject.put("Title", "新加坡監理沙盒準則出爐，高規格要求原創點子才能申請");
+		jObject.put("Title", "Fintech title");
 		jObject.put("date", "2016-11-30");
 
 		System.out.println("success to get Data");

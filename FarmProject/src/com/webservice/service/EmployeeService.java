@@ -66,4 +66,22 @@ public class EmployeeService extends DefaultResponse implements IEmployeeService
 		return null;
 	}
 
+	@Override
+	public Object test(String json) throws Exception {
+		System.out.println("success");
+		return responseSuccess(defaultResponse());
+	}
+
+	@Override
+	public Object testWithConsumes(String json) throws Exception {
+		System.out.println(json);
+		return responseSuccess(defaultResponse());
+	}
+
+	@Override
+	public Object testWithNonConsumes(String json) throws Exception {
+		System.out.println(json);
+		return responseSuccess(defaultResponse());
+	}
+
 }

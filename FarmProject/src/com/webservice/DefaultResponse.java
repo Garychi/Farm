@@ -15,16 +15,13 @@ import net.sf.json.JSONObject;
 public abstract class DefaultResponse {
 		
 	protected Response responseSuccess(Object result){
-		// 設定HTTP Status以及Response Body
 		StatusType status=result !=null ? Status.OK : Status.NO_CONTENT;
 		
 		ResponseBuilder builder = Response.status(status).entity(result);
 		builder.header("Content-Type", "application/json;charset=UTF-8");
 		
-		// 生成Response
 		Response response = builder.build();
 
-		// 回傳Response
 		return response;	
 	}
 	
