@@ -51,8 +51,16 @@ FarmProject/WebContent/META-INF/context.xml
 FarmProject/WebContent/WEB-INF/config/cxf-beans.xml
 FarmProject/WebContent/WEB-INF/config/spring-init-config.xml
 FarmProject/target/*
-
+FarmProject/out/*
+.idea/*
 
 FarmProject/target/classes/com/it/dao/HibernateDAO.class
 FarmProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 FarmProject/target/m2e-wtp/web-resources/META-INF/maven/FarmProject/FarmProject/pom.xml
+FarmProject/target/m2e-wtp/web-resources/META-INF/maven/FarmProject/FarmProject/pom.properties
+FarmProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+FarmProject/target/classes/com/it/dao/HibernateDAO.class
+FarmProject/target/classes/com/it/servlet/AsyncRequest.class
+FarmProject/target/classes/com/it/utils/ClassReflectionUtil.class
+FarmProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+FarmProject/target/m2e-wtp/web-resources/META-INF/maven/FarmProject/FarmProject/pom.properties
