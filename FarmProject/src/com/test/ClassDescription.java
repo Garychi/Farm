@@ -1,20 +1,17 @@
 package com.test;
 
 
-import org.apache.log4j.Logger;
-
 import com.it.utils.SQLMapper;
-import com.model.EMP;
 
 
 public class ClassDescription {
-	private final static Logger log = Logger.getLogger(ClassDescription.class);
+//	private final static Logger log = Logger.getLogger(ClassDescription.class);
 	public ClassDescription() {
 	}
 
 	public static void main(String args[]) {
 		ClassDescription description = new ClassDescription();
-		log.info("aa");
+//		log.info("aa");
 //		EMP employee = new EMP();
 //		employee.setDeptno(1);
 //		employee.setEmpno(10);
